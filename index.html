@@ -101,9 +101,9 @@
     <!-- Main Nav -->
     <nav class="sticky top-0  z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-border">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between gap-4 py-2">
+            <div id="nav-container" class="flex items-center justify-between gap-4 py-4 transition-all duration-300">
                 <a href="#home" class="flex items-center gap-2">
-                    <img src="logo.jpg" alt="Pandiit Academy" class="h-10 w-auto rounded">
+                    <img id="nav-logo" src="logo.jpg" alt="Pandiit Academy" class="h-16 w-auto rounded transition-all duration-300">
                     <span class="font-bold text-xl text-primary hidden md:block">Pandiit Academy</span>
                 </a>
                 <div class="flex items-center gap-1 flex-wrap justify-end">
@@ -557,6 +557,27 @@
         document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
         });
+
+        // Navbar Scroll Effect
+        const navContainer = document.getElementById('nav-container');
+        const navLogo = document.getElementById('nav-logo');
+        
+        function updateNavbar() {
+            if (window.scrollY > 20) {
+                navContainer.classList.remove('py-4');
+                navContainer.classList.add('py-2');
+                navLogo.classList.remove('h-16');
+                navLogo.classList.add('h-10');
+            } else {
+                navContainer.classList.add('py-4');
+                navContainer.classList.remove('py-2');
+                navLogo.classList.add('h-16');
+                navLogo.classList.remove('h-10');
+            }
+        }
+
+        window.addEventListener('scroll', updateNavbar);
+        updateNavbar(); // Initial check
     </script>
 </body>
 </html>
